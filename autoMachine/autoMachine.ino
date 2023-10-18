@@ -90,7 +90,7 @@ void return_the_initial_state()
   {
     Serial.println ("while");
     delay(2000);//==================================================================
-    if(digitalRead(k3) == 1)
+    if(digitalRead(k3) == 0)
     {
       Serial.println ("if");
       break;
@@ -107,7 +107,7 @@ void auto_mode()
     lcd.setCursor(0, 0);
     lcd.clear();
     lcd.print("first mov 1");
-  }while(!digitalRead(k1));//
+  }while(digitalRead(k1));//
   digitalWrite(C3, HIGH);
   delay(1000);
   do{
@@ -116,7 +116,7 @@ void auto_mode()
     lcd.clear();
     lcd.print("Second mov 2");
     digitalWrite(C2, HIGH);
-  }while(digitalRead(k2));//
+  }while(!digitalRead(k2));//
   digitalWrite(C3, LOW);
   digitalWrite(C4, HIGH);
   do{
@@ -126,7 +126,7 @@ void auto_mode()
     lcd.print("Third mov 3");
     digitalWrite(C2, LOW);
     digitalWrite(C1, LOW);
-  }while(!digitalRead(k3));//
+  }while(digitalRead(k3));//
   GeneralCounter++;
   eeprom_update_block((void*)&GeneralCounter,0,sizeof(GeneralCounter));
   if(!CounterDownFlag)Counterdown--;
@@ -514,7 +514,7 @@ void loop() {
     main_logic();
   }
 
-  if(digitalRead(k4))
+  if(!digitalRead(k4))
   {
     Serial.println(digitalRead(k4)); 
     if(SelectMenu==MainMenu && MenuSettingsCursor==0){
@@ -523,7 +523,7 @@ void loop() {
     }
   }
 
-  if(digitalRead(k5))
+  if(!digitalRead(k5))
   {
     if(SelectMenu==MainMenu)
     {
